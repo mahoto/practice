@@ -1,0 +1,26 @@
+<?php
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+?>
+<?php $reviews=$this->getReviewsCollection(); ?>
+<ul>
+<?php if($reviews->getSize()): ?>
+<?php $i=0; foreach ($reviews as $review) : ?>
+	<?php $i++; ?>
+    <?php $_product=Mage::getModel('catalog/product')->load($review->getEntityPkValue()) ;?>
+    <li class="<?php if($i==1):?>first <?php endif;?>">        
+        <a class="product-img" href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(135); ?>" width="135" height="135" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a>
+		<div class="product-shop">
+			<h2 class="product-name"><?php echo $_product->getName() ?></h2>
+			<strong class="review-by"><?php echo $this->__('Reviewer: <span>').$review->getNickname() ?></span></strong>
+			<span class="review-content"><?php echo $review->getDetail() ?></span>
+		</div>
+    </li>
+<?php endforeach; ?>
+<?php else : ?>
+    <?php echo $this->__('There is no review!'); ?>
+<?php endif; ?>
+</ul>

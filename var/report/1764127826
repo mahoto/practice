@@ -1,0 +1,9 @@
+a:5:{i:0;s:276:"Error in file: "E:\PHP_workspace\magento\2014.01\Mahoto\magento\app\code\local\Queldorei\Shoppercategories\sql\shoppercategories_setup\mysql4-install-0.1.0.php" - SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'shoppercategories_setup' for key 'PRIMARY'";i:1;s:1132:"#0 E:\PHP_workspace\magento\2014.01\Mahoto\magento\app\code\core\Mage\Core\Model\Resource\Setup.php(645): Mage::exception('Mage_Core', 'Error in file: ...')
+#1 E:\PHP_workspace\magento\2014.01\Mahoto\magento\app\code\core\Mage\Core\Model\Resource\Setup.php(421): Mage_Core_Model_Resource_Setup->_modifyResourceDb('install', '', '0.1.2')
+#2 E:\PHP_workspace\magento\2014.01\Mahoto\magento\app\code\core\Mage\Core\Model\Resource\Setup.php(327): Mage_Core_Model_Resource_Setup->_installResourceDb('0.1.2')
+#3 E:\PHP_workspace\magento\2014.01\Mahoto\magento\app\code\core\Mage\Core\Model\Resource\Setup.php(235): Mage_Core_Model_Resource_Setup->applyUpdates()
+#4 E:\PHP_workspace\magento\2014.01\Mahoto\magento\app\code\core\Mage\Core\Model\App.php(417): Mage_Core_Model_Resource_Setup::applyAllUpdates()
+#5 E:\PHP_workspace\magento\2014.01\Mahoto\magento\app\code\core\Mage\Core\Model\App.php(343): Mage_Core_Model_App->_initModules()
+#6 E:\PHP_workspace\magento\2014.01\Mahoto\magento\app\Mage.php(683): Mage_Core_Model_App->run(Array)
+#7 E:\PHP_workspace\magento\2014.01\Mahoto\magento\index.php(87): Mage::run('', 'store')
+#8 {main}";s:3:"url";s:66:"/index.php/admin/cache/index/key/b7d674dabbe72ac3a0a9a06e52f147d6/";s:11:"script_name";s:10:"/index.php";s:4:"skin";s:7:"default";}

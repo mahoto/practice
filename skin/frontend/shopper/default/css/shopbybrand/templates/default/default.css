@@ -1,0 +1,189 @@
+/* 
+    Document   : default.css
+    Created on : 19-02-2013, 23:43:42
+    Author     : blanka
+    Description:
+        Purpose of the stylesheet follows.
+*/
+.shopbybrand a{text-decoration:none;}
+.shopbybrand a:hover{text-decoration:underline;}
+.shopbybrand_view a{text-decoration:none;}
+.shopbybrand_view a:hover{text-decoration:underline;}
+.shopbybrand .brand-description{float: left;padding: 10px;max-height: 180px;overflow: hidden;}
+.shopbybrand .brand-description p{width: 65%;float: left}
+.shopbybrand .brand-description img{float: left}
+.shopbybrand .manufacturer-product-list{float: left}
+button{cursor:pointer;}
+/*
+bran listing ThinhND
+*/
+.shopbybrand .featured-brands{float:left;margin-bottom:20px;}
+.shopbybrand .featured-brands ul{float: left;width: 100%}
+.shopbybrand .featured-brands ul li{width: 200px;float: left;padding-left: 10px;text-align: center;margin:0 0 10px;}
+.shopbybrand .featured-brands ul li a div.brand-logo{max-height: 150px;overflow: hidden;border: 1px solid #CCC}
+.shopbybrand .shopbybrand-content ul .diplayimage{text-align: center; margin-top: 20px;}
+#brand-load-ajax{position:fixed;top:200px;z-index:2;left:50%;}
+#loading_mask_loader{top: 45%;left: 50%;width: 150px;margin-left: -105px;padding: 15px 30px;background: #fff4e9;border: 2px solid #f1af73;color: #d85909;font-weight: bold;text-align: center;z-index: 1000;}
+.shopbybrand .shopbybrand-content{float:left;width:100%;}
+.shopbybrand_list_head
+{
+	border-bottom:1px solid #CCC;
+	padding-bottom:5px;
+    float: left;
+    width: 100%;
+}
+#featured_shopbybrand li
+{
+	display:inline;
+	margin-right:10px;
+}
+#featured_shopbybrand li a img
+{
+	margin-top:10px;
+    border-style: solid; border-width: 1px; border-color:#e3d78f;
+}
+/*
+make slide
+*/
+.feature-content {width:100%; height:auto; margin-bottom:15px;}
+/*#screen{float:left;	width:670px; padding:0px; margin:0px;display: inline;}		
+	
+#screen li{float:left; list-style:none;}
+
+#screen .jq-ss-crop{	margin:5px 5px;	border:1px solid #e3d78f}
+#buttonleft{width: 15px;}
+#buttonright{width: 15px;}
+#left,#right{font-weight:bolder; font-size:36px; margin-top:70px; display:block; text-decoration:none; color:black;}
+#view {display:inline; height:auto; margin:15px 15px 0px 0px;overflow:hidden; text-align:center; width:90%; }
+#images{float:left; width:3818px !important; width:3822px; padding:0;}*/
+#brandName{
+    text-align: center;
+}
+.clear{
+    clear: both;
+}
+#shopbybrand_char_filter{
+    margin-top: 20px;    
+}
+#shopbybrand_char_filter li{
+    margin-top: 20px;
+    display:inline;
+	margin-right:10px;
+	font-weight:bold;
+    padding-left: 10px;
+}
+.shopbybrand .top-view{
+	float:left;
+	width:100%;
+	padding:5px 0;
+	border-top:1px solid #d5d5d5;
+	margin:10px 0 20px;
+	text-align:center;
+	position:relative;
+	}
+.shopbybrand .top-view a{
+	font-size:12px;
+	text-decoration:none;
+	font-weight:bold;
+	text-transform:uppercase;
+	padding:0 10px;
+	}
+#shopbybrand_char_filter li.active a{color: #d96708}
+#shopby_list
+{
+	line-height:30px;
+	padding-top:30px;
+}
+.shopbybrand #shopbybrand_char_filter , #shopbybrand_list{
+    margin-left: 20px;
+}
+.shopbybrand #shopbybrand_list{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+#shopbybrand_list li
+{	
+	width:20%;
+	float:left;
+		
+}
+#shopbybrand_list .diplayimage img{
+    
+}
+#shopbybrand_list .diplayimage .brand-logo{height: 75px;overflow: hidden;width: 100px;margin: 0px auto;border-style: solid; border-width: 1px; border-color:#CCC;}
+/*add*/
+/* Brand categories*/
+.shopbybrand .brand-category {
+    width: 100%;
+    float:left;
+	 margin: 0 0 20px;
+}
+.shopbybrand .brand-category ul{float:left;width:100%;}
+.shopbybrand .brand-category ul ol{float:left;width:25%;}
+.shopbybrand .brand-category ul li {
+    width: 100%; 
+    float: left;
+	position:relative;
+}
+.brand-category ul li  a.show-child{
+	width:25px;
+	height:20px;
+	float:left;
+	background:url(../../../../images/shopbybrand/plus.png) no-repeat left center ;
+	text-decoration:none;
+	text-indent: -1000px;
+	overflow:hidden;
+	cursor:pointer;
+	}
+.brand-category ul li  a.show-child.child_active{
+	background:url(../../../../images/shopbybrand/minus.png) no-repeat left center  !important;
+	}
+.brand-category ul li ul.brand-child{	
+	margin-left:35px;
+	}
+.brand-category ul li ul.brand-child li{float:left;width:100%;display:none;}
+/* */
+/* Brand search */
+.shopbybrand .brand-input-search {
+    width: 100%;
+    margin-left: 20px;
+}
+.shopbybrand .brand-input-search .input-text-search{
+    width: 50%;
+	padding-left:10px;
+	height:20px;
+}
+.shopbybrand .brand-input-search  .validation-advice{position:absolute;}
+
+/* */
+/* Brand view */
+.shopbybrand .brand-right {
+    width: 30%;
+    float: left;
+}
+.shopbybrand .brand-detail {
+    width: 70%;
+    float: left;
+}
+/* */
+/* Sidebar */
+.page-title h5{
+    margin-top: 20px;
+}
+
+.shopbybrand_view .brand-category ul,.shopbybrand_view .brand-category .brand-category-content{float:left;width:100%;}
+.shopbybrand_view .brand-category ul ol{float:left;width:33%;}
+.shopbybrand_view .brand-category ul ol li{float:left;width:100%;}
+.shopbybrand_view .brand-category ul ol.last{border-right:none;}
+.shopbybrand-index-view .block-banner .block-content{background:0;}	
+.shopbybrand_view .brand-left{}
+.shopbybrand_view .brand-description{float:left;width:100%;margin-bottom:20px;}
+.shopbybrand_view .brand-description img{float:left;}
+.shopbybrand_view .brand-description p{float:left;padding:42px 0;font-size:1em;color:rgb(24, 24, 24);width:450px;}
+.shopbybrand_view .brand-category{float:left;width:100%;padding:20px 0;border-top:1px dashed #dedede;} 
+.shopbybrand_view  .manufacturer-product-list,.shopbybrand_view  .manufacturer-product-list .category-products{float:left;width:100%;}
+.shopbybrand_view  .manufacturer-product-list .products-grid{float:left;width:100%;}
+.shopbybrand_view .block-subscribe input.input-text{height:22px;margin-bottom:8px;}
+.shopbybrand_view   .block-content button.button{margin-bottom:6px;}
+.brand-right .block{float:left;width:100%;padding-left:0;padding-right:0;margin-left:0;margin-right:0;}
+/**/

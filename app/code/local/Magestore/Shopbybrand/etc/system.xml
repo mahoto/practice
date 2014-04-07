@@ -1,0 +1,272 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category    Magestore
+ * @package     Magestore_Shopbybrand
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+-->
+<config>
+    <tabs>
+        <magestore translate="label">
+            <label>Magestore Extension</label>
+            <sort_order>400</sort_order>
+        </magestore>
+    </tabs>
+    <sections>
+        <shopbybrand translate="label" module="shopbybrand">
+            <class>separator-top</class>
+            <label>Shop by Brand</label>
+            <tab>magestore</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>299</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>        
+                        <enable translate="label">
+                            <label>Enable Shop by brands</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>0</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </enable>
+                        <router translate="label">
+                            <label>Frontend  router</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[ For example: http://www.yourstore.com/<u><b>brand</b></u>, http://www.yourstore.com/<u><b>brand</b></u>/apple]]></comment>
+                        </router>
+                        <attribute_code translate="label">
+                            <label>Attribute Code</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Name of Manufacturer attribute in your store. Default is "manufacturer".]]></comment>
+                        </attribute_code>
+                        
+                        <brand_extended_search>
+                            <label>Search brand by</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>48</sort_order>
+                            <source_model>shopbybrand/system_config_source_brandsearch</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </brand_extended_search>
+                        
+                        <number_brand_top>
+                            <label>Number of brands displayed when filter</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Number of brands shown when filter by top sell/ most subscribers/ new update/ most products.]]></comment>
+                        </number_brand_top>
+                        <number_product_on_row>
+                            <label>Number of products per row on Brand detailed page</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Apply to default template and template 1.
+0 value displays no product. Empty value displays 4 brands
+]]></comment>
+                        </number_product_on_row>
+                        <!--feature_display_mode>
+                            <label>Featured Display Mode</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>70</sort_order>
+                            <source_model>shopbybrand/system_config_Featuredisplaymode</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </feature_display_mode-->
+                    </fields>
+                </general>
+                <optional translate="label">
+                    <label>Optional Configuration</label>
+                    <sort_order>5</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <display_featured_brand>
+                            <label>Display Featured Brands</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>25</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </display_featured_brand>
+                        <display_brand_image>
+                            <label>Display Brand with Image</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>30</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Apply to Brand listed page </comment>
+                        </display_brand_image>
+                        <display_brand_have_product>
+                            <label>Only display Brands having products</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>31</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </display_brand_have_product>
+                        <display_brand_categories>
+                            <label>Display Brand Categories on Brand detailed page</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>33</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </display_brand_categories>
+                        <display_brand_signup>
+                            <label>Display Sign up box on Brand detailed page</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>35</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </display_brand_signup>
+                        <display_brand_maxreview>
+                            <label>Maximum Reviews displayed</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>37</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>0 or empty value will display all reviews</comment>
+                        </display_brand_maxreview>
+                        
+                        <display_brand_view_search>
+                            <label>Display Search box on Brand detailed page</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>40</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </display_brand_view_search>
+                        <display_shopby>
+                            <label>Display Shopping options box on Brand detailed page</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>40</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </display_shopby>
+                        <display_brand_list_search>
+                            <label>Display Search box on Brand listed page</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>45</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </display_brand_list_search>
+                        <display_brand_by_category>
+                            <label>Display “Brand by Category” on Brand listed page</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>50</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </display_brand_by_category>
+                        <display_sidebar>
+                            <label>Display Brand sidebar</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>80</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Apply to pages having sidebar</comment>
+                        </display_sidebar>
+                        <maximum_item_sidebar>
+                            <label>Maximum Brands displayed on Brand sidebar</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>0 or empty value will display all brands</comment>
+                        </maximum_item_sidebar>
+                    </fields>
+                </optional>
+                <template translate="label">
+                    <label>Template Configuration</label>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <brand_listing translate="label">
+                            <label>Brand Template</label>
+                            <!--frontend_type>select</frontend_type-->
+                            <frontend_model>shopbybrand/adminhtml_system_config_template</frontend_model>
+                            <!--source_model>shopbybrand/system_config_source_listingtype</source_model-->
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </brand_listing>
+                    </fields>
+                </template>
+            </groups>
+        </shopbybrand>
+    </sections>
+</config>

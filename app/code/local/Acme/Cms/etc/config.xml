@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <global>
+        <blocks>
+            <cms>
+                <rewrite>
+                <page>Acme_Cms_Block_Page</page>
+            </rewrite>                
+            </cms>
+        </blocks>
+    </global>
+</config>

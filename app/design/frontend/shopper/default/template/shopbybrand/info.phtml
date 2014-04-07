@@ -1,0 +1,21 @@
+<?php 
+    $brand = $this->getBrand();
+    if($brand->getId()):
+?>
+<a href="<?php echo $this->getUrl($brand->getUrlKey());?>">
+    <?php
+        if($brand->getImage())
+		{
+            //$path = 'brands' . DS . $brand->getId();
+            $path = 'brands' . DS . 'thumbnail'.DS.$brand->getId();
+            $imgSrc = Mage::helper('shopbybrand/image')->init($brand, $path)->resizeThumbnail(60, 40);
+            ?>
+                <img src="<?php echo $imgSrc;?>" title="<?php echo $brand->getName();?>"/>
+            <?php
+		}
+    ?>
+    <p>
+        <?php echo $brand->getName();?>
+    </p>
+</a>
+<?php endif; ?>

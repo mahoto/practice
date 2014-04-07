@@ -1,0 +1,41 @@
+<?php
+$categories = Mage::getModel('catalog/category')
+	->getCollection()
+	->addAttributeToSelect('*')
+	->addIsActiveFilter()
+	->addAttributeToFilter('level',3)
+	->addOrderField('name');
+?>
+<?php if ($categories): ?>
+	<ul>
+		<?php foreach ($categories as $category): ?>
+			<li>
+				<?php $_category = Mage::getModel('catalog/category')->load($category->getId())?>
+				<a href="<?php echo Mage::getUrl().$_category->getUrlPath()?>">
+					<p class="cover">
+						<img src="<?php echo Mage::getBaseUrl('media').'catalog/category/'.$_category->getThumbnail()?>" alt="<?php echo $this->htmlEscape($_category->getName())?>" >
+					</p>
+					<p class="description">
+						<?php echo $_category->getDescription()?>
+					</p>
+				</a>
+			</li>	
+		<?php endforeach ?>
+		<div style="clear: both;"></div>
+	</ul>
+<?php endif ?>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+	jQuery('.featured-category .cover').hover(function(){
+		jQuery(this).css('opacity','0.1');
+		jQuery(this).parent().find('.description').css('opacity','1');
+	},function(){
+		jQuery(this).css('opacity','1');
+		jQuery(this).parent().find('.description').css('opacity','0');
+	});
+	jQuery('.featured-category .description').hover(function(){
+		jQuery(this).css('opacity','1');
+		jQuery(this).parent().find('.cover').css('opacity','0.1');
+	})
+});
+</script>

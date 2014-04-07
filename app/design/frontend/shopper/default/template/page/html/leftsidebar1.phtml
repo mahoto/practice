@@ -1,0 +1,52 @@
+<div class="left-categories">
+	<?php $_helper = Mage::helper('catalog/category') ?>
+	<?php $_categories = $_helper->getStoreCategories() ?>
+	<?php if (count($_categories) > 0): ?>
+		
+    	<ul>
+			<?php foreach($_categories as $_category): ?>
+			<li>
+				<a href="<?php echo $_helper->getCategoryUrl($_category) ?>">
+				<?php echo $this->__($_category->getName()) ?>
+				</a>
+			</li>
+			<?php endforeach; ?>
+			<li>
+				<a href="<?php echo $this->getUrl('new')?>">
+					<?php echo $this->__('New Arrivals') ?>
+				</a>
+			</li>
+		</ul>
+			    
+	<?php endif; ?>
+</div>
+<div class="left-brands">
+	<ul>
+		<?php
+		$shopbybrands = Mage::getResourceModel('shopbybrand/brand_collection')
+	                ->setStoreId(0)
+	                ->addFieldToFilter('status', array('eq' => 1));
+	        foreach ($shopbybrands as $brand) {
+	    ?>
+	    		<li>
+	    			<a href="<?php echo $this->getUrl().$brand->getData('url_key')?>">
+	    				<?php
+	    					$products = array();
+	    					$productIds = explode(',', $brand->getData('product_ids'));
+    						foreach ($productIds as $productId){
+					            if($productId > 0) $products[$productId] = array('position' => 0);
+					        }
+					        $numberproduct = count($products);
+	    				?>
+	    				<?php echo $brand->getData('name').' ('.$numberproduct.')' ?>
+	    			</a>
+	    		</li>
+	    <?php
+	        }
+	    ?>
+	</ul>
+</div>
+<a href="<?php echo $this->getUrl('brand') ?>"><?php echo $this->__('Brand list') ?></a>
+<div class="left-custommenu">
+	<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('custom_menu')->toHtml() ?>
+</div>

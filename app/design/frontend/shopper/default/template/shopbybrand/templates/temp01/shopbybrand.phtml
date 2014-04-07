@@ -1,0 +1,236 @@
+<?php
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category    Magestore
+ * @package     Magestore_Shopbybrand
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+/**
+ * Shopbybrand template
+ * 
+ * @see Magestore_Shopbybrand_Block_Shopbybrand
+ */
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('css/shopbybrand/templates/temp01/default.css'); ?>" media="all" />
+<script language="javascript" src="<?php echo $this->getSkinUrl('css/shopbybrand/templates/temp02/jquery1.9.0.min.js'); ?>"> </script>
+<div class="shopbybrand">    
+<?php $featuredBrands = $this->getFeaturedBrands(); ?>
+    <?php if (count($featuredBrands)): ?>
+        <div class="featured-brands">
+            <h1 class="shopbybrand_list_head"><?php echo $this->__('Featured Brands') ?></h1>
+            <?php // if(Mage::helper('shopbybrand')->getFeatureModeCode() == 1):  ?>
+            <ul>
+                <?php foreach ($featuredBrands as $featuredBrand) { ?>
+                    <?php
+                    $path = 'brands' . DS . $featuredBrand->getId();
+                    $img = Mage::helper('shopbybrand/image')->init($featuredBrand, $path)->resize(130, 90);
+                    ?>
+                    <li>
+                        <a href="<?php echo $this->getBrandUrl($featuredBrand); ?>">
+                            <div class="brand-logo">
+                                <img src="<?php echo $img; ?>" />
+                            </div>
+                            <?php echo $featuredBrand->getName(); ?>
+                        </a>
+                    </li>
+                <?php } ?>
+            </ul>
+            <div class="clear"></div>
+            <?php //endif;  ?>
+        </div>
+    <?php endif; ?>
+    <div class="shopbybrand-content">
+        <?php $displayBrandByCategory=$this->displayBrandByCategory();?>
+        <?php if($displayBrandByCategory):?>
+        <h1 class="shopbybrand_list_head"><?php echo $this->__('Brand by Category') ?></h1>
+
+        <div class="brand-category">
+		<div class="brand-category-content">
+            <ul>
+                <?php $cats = $this->getAllCategories();$categories = $cats['parent'];
+						$count=count($categories);		
+						$div = intval($count/4);
+						if($count%4==3) $div++ ;
+						if($count%4==1||$count%4==2) $div_more=$div+1;
+						$j=0;
+						$column=1;
+				?>
+                <?php $i=0; foreach ($categories as $category) {
+                    $childs = $cats['children'][$category->getId()];
+					$i++;
+					$j++;
+                    ?>
+					<?php if($j==1): ?>
+					<ol class=" "><?php  endif;?>
+                    <li id="cat-<?php echo $i; ?>">
+						<?php if(count($childs)>1) : ?>
+						<a class="show-child">&nbsp;</a>
+						<?php endif;?>
+                        <a style="<?php if(count($childs)<=1): ?>padding-left:25px;<?php endif ;?>" href="javascript:void(0)" onclick="ajaxupdate('<?php echo $category->getId(); ?>')">
+                            <?php echo $category->getName(); ?>
+                        </a>
+                        <?php if(count($childs)>1) : ?>
+						<ul class="brand-child">
+							<?php
+								foreach($childs as $child):
+									if($child->getId() != $category->getId()):
+							?>
+										<li class="child-cat">
+											<a href="javascript:void(0)" onclick="ajaxupdate('<?php echo $child->getId(); ?>')">
+												<?php echo $child->getName(); ?>
+											</a>
+										</li>
+							<?php endif;endforeach;?>
+                        </ul>
+						<?php endif; ?>
+                    </li>
+					<?php if($count%4==1):if($column==1):if($j==$div_more):?></ol><?php $j=0;$column++;endif;endif;endif;?>
+					<?php if($count%4==1):if($column!=1):if($j==$div&&$div>0): ?></ol><?php $j=0;$column++; endif;endif;endif;?>
+					<?php if($count%4==2):if($column==1||$column==2):if($j==$div_more):?></ol><?php $j=0;$column++;endif;endif;endif;?>
+					<?php if($count%4==2):if($column!=1&&$column!=2):if($j==$div&&$div>0):?></ol><?php $j=0;$column++;endif;endif;endif;?>
+					<?php if($count%4==3||$count%4==0): if($j==$div): ?></ol><?php $j=0;$column++;  endif;endif;?>
+					<?php if($count%4==3): if($column==4):if($j==$div-1&&$div>1): ?></ol><?php endif; endif;endif;?>						
+                <?php } ?>
+            </ul>
+			</div>			
+        </div>
+         <?php endif; ?>
+	</div>		
+	<div class="brand-search">
+        <?php $displayBrandSearch=$this->displayBrandsearch();?>
+        <?php if($displayBrandSearch):?>
+        <h1 class="shopbybrand_list_head"><?php echo $this->__('Brand Search') ?></h1>
+        <div class="brand-input-search">
+            <form id="brand-input-search-form" method="post" action="<?php echo $this->getCharSearchUrl('all').'#shopbybrand_char_filter'; ?>">
+                <input id="filterInput" name="input" onfocus="if(this.value=='Enter Keyword') this.value=''" onblur="if(this.value=='') this.value='Enter Keyword'" class="input-text-search input-text required-entry" title="<?php echo $this->__('Enter Keyword') ?>" value="<?php
+                if ($this->getInputSearch()) {
+                    echo $this->getInputSearch();
+                } else {
+                    echo $this->__('Enter Keyword');
+                }
+                ?>" type="text">
+                <button id="search" type="submit" class="button"><span><span><?php echo $this->__('Search'); ?></span></span></button>
+            </form>
+        </div>
+        <?php endif; ?>
+        <?php $begin=$this->generateListCharacter(); $lists = $this->getListCharacterBegin()?>
+        <div id='shopbybrand_char_filter'><ul>
+                <li class="<?php if(!$begin): ?>active<?php endif; ?>"><a href='<?php echo $this->getCharSearchUrl("All")?>'> <?php echo $this->__("All"); ?></a></li>
+                <?php for ($i = 0; $i < count($lists); $i++) {
+                    if ($begin == $lists[$i]) {?>
+                <li class='active'><a href="<?php echo $this->getCharSearchUrl($lists[$i]) ?>"> <?php echo $lists[$i]; ?></a></li>
+                <?php }  else {?>
+                <li><a href='<?php echo $this->getCharSearchUrl($lists[$i]) ?>'> <?php echo $lists[$i]; ?> </a></li>
+
+                <?php } } ?>
+                </ul></div>
+		<div class="top-view">
+			<a id="a2" href="javascript:void(0)" onclick="ajaxupdate('<?php echo 'top_sell'; ?>')"><?php echo $this->__('Best seller') ?></a>
+            <a id="a1" href="javascript:void(0)" onclick="ajaxupdate('<?php echo 'top_signup'; ?>')"><?php echo $this->__('Most subscribers') ?></a>
+			<a id="a3" href="javascript:void(0)" onclick="ajaxupdate('<?php echo 'top_new'; ?>')"><?php echo $this->__('New update') ?></a>
+			<a id="a4" href="javascript:void(0)" onclick="ajaxupdate('<?php echo 'top_product'; ?>')"><?php echo $this->__('Most products') ?></a>
+			<div id="brand-load-ajax" style="display: none;">
+            <p id="loading_mask_loader" style="position: absolute; left: 47%;top: 80%;text-align: center" class="loader">
+                <img  alt="Loading..." src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>">
+                <br>
+                <?php echo $this->__('Please wait...'); ?>
+            </p>
+			</div>
+        </div>		
+        <div id="shopbybrand_list">			
+            <ul>
+                <?php
+                $shopbybrands = $this->getBrandsByBegin();
+                $displaybrandimage = $this->displayBrandImage();
+				$count=$shopbybrands->getSize() +1;		
+                if ($shopbybrands->getSize()) {
+                $i=0;    foreach ($shopbybrands as $brand) { 
+                    $path = 'brands' . DS . $brand->getId();
+                    $img = Mage::helper('shopbybrand/image')->init($brand, $path)->resize(100, 75);
+                ?>
+				<?php $i++;?>
+                    <?php if(!$displaybrandimage):?>
+					<!--li  class="<?php if($count<4&&$i==$count):?>last <?php endif;?><?php if($count>=4&&$i%4==0): ?>last <?php endif;?><?php if($i==$count&&$count%4==1): ?> last<?php endif; ?>"><a href="<?php echo $this->getBrandUrl($brand);?>"><?php echo $brand->getData('name').' ('.$brand->getNumberProduct().')'; ?></a></li-->
+                    <li  class="<?php if($i%4==0): ?> last<?php endif; ?>"><a href="<?php echo $this->getBrandUrl($brand);?>"><?php echo $brand->getData('name').' ('.$brand->getNumberProduct().')'; ?></a></li>
+                    <?php else:?>
+                    <li  class="diplayimage <?php if($count<4&&$i==$count):?>last <?php endif;?><?php if($count>=4&&$i%4==0): ?>last <?php endif;?><?php if($i==$count&&$count%4==1): ?> last<?php endif; ?>">
+                        <a href="<?php echo $this->getBrandUrl($brand);?>">
+                            <div class="brand-logo">
+                                <img src="<?php echo $img?>"/>
+                            </div>
+                            <?php echo $brand->getData('name').' ('.$brand->getNumberProduct().')'; ?>
+                        </a>
+                    </li>
+                    <?php endif;?>
+                     <?php  }
+                } else {
+                    echo $this->__('Brand not found!');
+                }
+                ?>
+            </ul>
+        </div>
+        
+		</div>
+    
+</div>
+<script type="text/javascript">
+    //<![CDATA[
+    function ajaxupdate(categoryId){
+        $('brand-load-ajax').style.display = "";
+        var view = '<?php echo $this->getUrl("shopbybrand/index/ajaxUpdateBrand") ?>';
+        var url = view+'?category=' + categoryId;
+        
+        var request = new Ajax.Request(url,{
+            onComplete: function(response){
+                $('shopbybrand_list').innerHTML = response.responseText.evalJSON();
+                $('brand-load-ajax').style.display = "none";
+                setLocation('<?php echo $this->helper('core/url')->getCurrentUrl().'#shopbybrand_char_filter'; ?>');
+            }
+        }
+    );
+    }
+	 $.noConflict();
+	jQuery(document).ready(function($) {
+		//$('.brand-category-content ul ol').last().addClass('last');
+		$('#shopbybrand_char_filter a').click(function(){
+			$('.top-view a').removeClass('active');
+		});
+		$('.top-view a').click(function(){			
+			var a_id= $(this).attr('id');			
+			$(this).addClass('active');
+			othera(a_id);
+			$('#shopbybrand_char_filter li').removeClass('active');
+		});	
+		function othera(id){
+			$.each($('.top-view a'),function(key,e){
+				if($(this).attr('id')!= id) 
+				$(this).removeClass('active');
+            });
+		}
+		$('a.show-child').click(function(){	
+						if($(this).hasClass('child_active'))
+							$(this).removeClass('child_active');
+						else
+							$(this).addClass('child_active');
+						var parent_id = $(this).parent().attr('id')	;
+						$('#'+parent_id+' .brand-child li').toggle(300,'linear');
+					});	
+	});
+    var brandinputsearchFormDetail = new VarienForm('brand-input-search-form');
+    //]]>
+</script>

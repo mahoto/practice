@@ -1,0 +1,30 @@
+<div class="brand-list">
+    <h1><?php echo $this->__('Brands') ?></h1>
+<?php
+$shopbybrands = Mage::getResourceModel('shopbybrand/brand_collection')
+                    ->setStoreId(0)
+                    ->addFieldToFilter('status', array('eq' => 1));
+?>
+<?php if ($shopbybrands): ?>
+    <ul>
+        <?php foreach ($shopbybrands as $brand): ?>
+            <li>
+                <a href="<?php echo $this->getUrl().$brand->getData('url_key')?>">
+                    <p class="cover">
+                        <?php
+                            $path = 'brands' . DS . 'thumbnail'.DS.$brand->getData('brand_id');
+                            $img = Mage::helper('shopbybrand/image')->init($brand, $path)->resizeThumbnail(175,175);
+                        ?>
+                        <img src="<?php echo $img ?>"/>
+                    </p>
+                    <p class="description">
+                        <strong class="brand-title"><?php echo $brand->getData('name') ?></strong><br/>
+                        <?php echo $brand->getData('short_description')?>
+                    </p>
+                </a>
+            </li>   
+        <?php endforeach ?>
+        <div style="clear: both;"></div>
+    </ul>
+<?php endif ?>
+</div>

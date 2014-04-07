@@ -1,0 +1,38 @@
+﻿<?php 
+	$shopbybrands = $this->getBrandsByBegin();
+	$display=$this->getDisplaySidebar();
+	$max=$this->getMaximumSidebar();
+    $displayModule=$this->getDisplayModule();
+?>
+<?php if($displayModule): ?>
+<?php if($display==1): ?>
+<div class="block shopbybrand_sidebar">
+		<div class="block-title">
+            <strong><span><?php echo $this->__('Brands') ?></span></strong>
+			</div>
+        <div class="block-content">
+            <ul>
+                <?php 
+                
+                $setlink = Mage::getStoreConfig('shopbybrand/general/router');
+                if (count($shopbybrands)) {
+                    if($display){
+                        $i=0;
+                    foreach ($shopbybrands as $brand) {
+                        echo("<li><a href='" . $this->getBrandUrl($brand) . "'>" . $brand->getData('name') . "</a></li>");
+                        $i++;
+                        if($i==$max)
+                            break;
+                    }                   
+                    }
+                }
+                ?>
+			</ul>
+			<div class="actions">
+			<a href="<?php echo $this->getUrl($setlink, array()) ?>"><?php echo $this->__('View all') ?></a>
+			</div>
+            
+        </div>    
+</div>
+<?php endif;?>
+<?php endif;?>

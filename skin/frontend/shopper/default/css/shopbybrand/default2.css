@@ -1,0 +1,59 @@
+/* 
+    Document   : default.css
+    Created on : 19-02-2013, 23:43:42
+    Author     : blanka
+    Description:
+        Purpose of the stylesheet follows.
+*/
+.shopbybrand .brand-description{float: left;padding: 10px;max-height: 180px;overflow: hidden;}
+.shopbybrand .brand-description p{width: 65%;float: left}
+.shopbybrand .brand-description img{float: left}
+.shopbybrand .manufacturer-product-list{float: left}
+/*
+bran listing ThinhND
+*/
+.shopbybrand .featured-brands ul{float: left;width: 100%}
+.shopbybrand .featured-brands ul li{width: 200px;float: left;padding-left: 10px;text-align: center;}
+.shopbybrand .featured-brands ul li a div.brand-logo{max-height: 150px;overflow: hidden}
+.shopbybrand_list_head
+{
+	border-bottom:1px solid #CCC;
+	padding-bottom:5px;
+    float: left;
+    width: 100%;
+}
+#featured_shopbybrand li
+{
+	display:inline;
+	margin-right:10px;
+}
+#featured_shopbybrand li a img
+{
+	margin-top:10px;
+}
+#brandName{
+    text-align: center;
+}
+#shopbybrand_char_filter{
+}
+#shopbybrand_char_filter li{
+    margin-top: 20px;
+    display:inline;
+	margin-right:10px;
+	font-weight:bold;
+}
+#shopby_list
+{
+	line-height:30px;
+	padding-top:30px;
+}
+
+#shopbybrand_list li
+{	
+	width:30%;
+	float:left;
+		
+}
+/*add*/
+
+

@@ -1,0 +1,129 @@
+<?php
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category    Magestore
+ * @package     Magestore_Shopbybrand
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+/**
+ * Shopbybrand template
+ * 
+ * @see Magestore_Shopbybrand_Block_Shopbybrand
+ */
+$brand = $this->getBrand();
+$displayBrandSearch = $this->displayBrandsearch(); 
+$displayBrandSignup = $this->displayBrandSignup();
+$attributeCode = Mage::helper('shopbybrand/brand')->getAttributeCode();
+?>
+<link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('css/shopbybrand/templates/temp02/default.css'); ?>" media="all" />
+<script language="javascript" src="<?php echo $this->getSkinUrl('css/shopbybrand/templates/temp02/jquery1.9.0.min.js'); ?>"> </script>
+<div class="shopbybrand_view">
+<div class="page-title category-title">
+            <h1><?php echo $brand->getName(); ?></h1>
+        </div>
+	<div class="brand-left" >
+    <div class="brand-detail"> 		
+		<div class="brand-detail-content">
+        <div class="brand-description">
+            <?php echo $this->getBrandImageUrl(); ?>
+            <p>
+                <?php echo $brand->getDescription(); ?>
+            </p>
+        </div>
+        <?php $displayBrandCategories = $this->displayBrandCategories(); ?>
+        <?php if ($displayBrandCategories && count($this->getParentCategories())): ?>
+            <div class="brand-category">
+			<div class="page-title category-title">
+            <h1><?php echo $this->__('Brand categories'); ?></h1>
+        </div>			
+            <div class="brand-category-content">
+                <ul>
+                <?php 	$cats = $this->getParentCategories(); $categories = $cats['parent'];
+						$count=count($categories);	
+						$div = intval($count/3);
+						if($count%3==2) $div++ ;
+						if($count%3==1) $div_more=$div+1;
+						$j=0;
+						$column=1;
+				?>
+                <?php $i=0; foreach ($categories as $category) {
+                    $childs = $cats['children'][$category->getId()];
+					$i++;
+					$j++;
+                    ?>
+					<?php if($j==1): ?>
+					<ol class=" "><?php endif;?>
+                    <li id="cat-<?php echo $i; ?>">
+						<?php if(count($childs)>1) : ?>
+						<a class="show-child">&nbsp;</a>
+						<?php endif;?>
+                        <a style="<?php if(count($childs)<=1): ?>padding-left:25px;<?php endif ;?>" href="<?php echo $category->getUrl()?>?<?php echo $attributeCode?>=<?php echo $brand->getOptionId()?>" onclick="">
+                            <?php echo $category->getName(); ?>
+                        </a>
+                        <?php if(count($childs)>1) : ?>
+						<ul class="brand-child">
+							<?php
+								foreach($childs as $child):
+									if($child->getId() != $category->getId()):
+							?>
+										<li class="child-cat">
+											<a href="<?php echo $child->getUrl()?>?<?php echo $attributeCode?>=<?php echo $brand->getOptionId()?>" onclick="">
+												<?php echo $child->getName(); ?>
+											</a>
+										</li>
+							<?php endif;endforeach;?>
+                        </ul>
+						<?php endif;?>
+                    </li>
+					<?php if($count%3==1):if($column==1):if($j==$div_more):?></ol><?php $j=0;$column++;endif;endif;endif;?>
+					<?php if($count%3==1):if($column!=1):if($j==$div&&$div>1): ?></ol><?php $j=0;$column++; endif;endif;endif;?>
+					<?php if($count%3==2||$count%3==0):if($j==$div):?></ol><?php $j=0;$column++;endif;endif;?>								
+					<?php if($count%3==2): if($column==3):if($j==$div-1&&$div>1): ?></ol><?php endif; endif;endif;?>						
+                <?php } ?>
+            </ul>
+			<script>
+				$.noConflict();
+				jQuery(document).ready(function($) {
+					//$('.brand-category-content ul ol').last().addClass('last');
+					$('a.show-child').click(function(){							
+						if($(this).hasClass('child_active'))
+							$(this).removeClass('child_active');
+						else
+							$(this).addClass('child_active');
+						var parent_id = $(this).parent().attr('id')	;
+						$('#'+parent_id+' .brand-child li').toggle(300,'linear');
+					});	
+				});
+			</script>
+            </div>
+            </div>
+        <?php endif; ?>
+		</div>
+    </div>
+	<div class="manufacturer-product-review-list">
+	<div class="page-title category-title">
+            <h1><?php echo $brand->getName().$this->__(' reviews'); ?></h1>
+        </div>
+        <?php echo $this->getChildHtml('shopbybrand-review') ?>
+    </div>
+	</div>
+    
+</div>  
+<script type="text/javascript">
+    //<![CDATA[
+    var newsletterSubscriberFormDetail = new VarienForm('brand-subcribers-form');
+    //]]> 
+</script>

@@ -1,0 +1,11 @@
+/* 
+    Document   : default.css    
+    Description:
+        Purpose of the stylesheet follows.
+*/
+.shopbybrand_sidebar .block-content ul{padding:10px;}
+.shopbybrand_sidebar .actions a{float:right;}
+.shopbybrand .brand-input-search .validation-advice{top:50px;}
+.shopbybrand .brand-input-search form{position:relative;}
+.brand-right button.button{height:auto  !important;}
+/* */
