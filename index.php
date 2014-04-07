@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * Magento
  *
  * NOTICE OF LICENSE
